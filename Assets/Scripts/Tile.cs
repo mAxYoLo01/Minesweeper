@@ -48,9 +48,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoin
                 if (!discovered)
                 {
                     if (flagged)
+                    {
                         GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/undiscovered");
-                    else
+                        CounterManager.instance.mine++;
+                    } else
+                    {
                         GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/flag");
+                        CounterManager.instance.mine--;
+                    }
+                    CounterManager.instance.SetMineUI();
                     flagged = !flagged;
                 }
             }

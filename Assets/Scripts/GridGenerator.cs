@@ -36,6 +36,7 @@ public class GridGenerator : MonoBehaviour
     {
         GenerateMinesGrid();
         GenerateNumbersGrid();
+        CounterManager.instance.Reset();
     }
 
     public void StartNewGame()
@@ -181,12 +182,13 @@ public class GridGenerator : MonoBehaviour
         }
         lostTile.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Images/red_mine");
         state = GameState.LOST;
+        print($"Game lost in {CounterManager.instance.time} seconds!");
     }
 
     private void WinGame()
     {
-        print("Game won!");
         state = GameState.WON;
+        print($"Game won in {CounterManager.instance.time} seconds!");
     }
 }
 
